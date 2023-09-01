@@ -11,8 +11,14 @@ class MovieViewset(viewsets.ModelViewSet):
     serializer_class=MovieSerializer
     @action(detail=True,methods=['POST'])
     def rate_movie(self,request,pk=None):
-        response={'message':'its working now'}
-        return Response(response,status=status.HTTP_200_OK)
+        if 'stars' in request.data:
+            movie=Movie.objects.get(id=pk)
+            print(movie.title)
+            response={'message':'its working now'}
+            return Response(response,status=status.HTTP_200_OK)
+        else:
+            response={'message':'No stars found'}
+            return Response(response,status=status.HTTP_400_BAD_REQUEST)
 
 class RatingViewset(viewsets.ModelViewSet):
     queryset=Rating.objects.all()
