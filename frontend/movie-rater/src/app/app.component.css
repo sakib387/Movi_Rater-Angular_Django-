@@ -1,0 +1,10 @@
+.app{
+  background-color: rgb(57, 55, 55);   
+  color: white;
+  height: 100vh;
+  padding-top: 100px;
+  padding-left: 100px;
+}
+h1{
+    text-align: center;
+}
