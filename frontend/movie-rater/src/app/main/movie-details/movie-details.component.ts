@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
-
+import { Component,Input } from '@angular/core';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.css']
 })
-export class MovieDetailsComponent {
 
+export class MovieDetailsComponent {
+ @Input() movie:any;
+ faStar=faStar
 }
