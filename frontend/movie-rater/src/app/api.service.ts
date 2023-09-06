@@ -14,6 +14,6 @@ export class ApiService {
   ) { }
 
   getMovies(){
-    return this.http.get(this.baseurl,{headers:this.headers})
+    return this.http.get<any>(this.baseurl,{headers:this.headers})
   }
 }

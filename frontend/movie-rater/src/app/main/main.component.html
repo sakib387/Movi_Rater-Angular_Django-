@@ -1,4 +1,4 @@
 <div class="layout">
-    <app-movie-list></app-movie-list>
+    <app-movie-list *ngIf="movies && movies.length" [movies]="movies" (seletedMovie)="seletedMovie($event)"></app-movie-list>
     <app-movie-details></app-movie-details>
 </div>
