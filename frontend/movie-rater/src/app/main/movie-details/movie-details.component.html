@@ -10,6 +10,12 @@
         <fa-icon [icon]="faStar" [ngClass]="{'orange':movie.avg_rating>4}"></fa-icon>
         ( {{ movie.no_of_rating }} ) 
     </p>
-     
+    <div class="bar"></div>
+    <div class="rating">
+        <h1>Rate it !!!</h1>
+        <fa-icon *ngFor="let rate of [1,2,3,4,5]" [icon]="faStar" class="star" (mouseenter)="getrating(rate)" [ngClass]="{'purple':rating>=rate}" (click)="ratingmovie(rate)"(mouseleave)="rating=0"></fa-icon> 
+
+    </div>
+    
      
 </div>
