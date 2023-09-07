@@ -1,6 +1,7 @@
 import { Component,Input ,Output,EventEmitter} from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ApiService } from 'src/app/api.service';
+import { Movie } from 'src/app/models/Movie';
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
@@ -9,8 +10,8 @@ import { ApiService } from 'src/app/api.service';
 
 export class MovieDetailsComponent {
   constructor(private apiserivce:ApiService){}
- @Input() movie:any;
- @Output() updatedMovie=new EventEmitter()
+ @Input() movie!:Movie;
+ @Output() updatedMovie=new EventEmitter<Movie>()
  faStar=faStar
  rating:number=0;
  getrating(rate:number){

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import{HttpClient,HttpHeaders} from '@angular/common/http'
+import { Movie } from './models/Movie';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,10 +15,10 @@ export class ApiService {
   ) { }
 
   getMovies(){
-    return this.http.get<any>(this.baseurl,{headers:this.headers})
+    return this.http.get<Movie[]>(this.baseurl,{headers:this.headers})
   }
   getMovie(id:number){
-    return this.http.get<any>(`${this.baseurl}${id}/`,{headers:this.headers})
+    return this.http.get<Movie>(`${this.baseurl}${id}/`,{headers:this.headers})
   }
   rateMovies(rate:number,movieId:number){
     const body=JSON.stringify({stars:rate})

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 import { tap } from 'rxjs/operators'; // Import the 'tap' operator
+import { Movie } from '../models/Movie';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -8,23 +10,33 @@ import { tap } from 'rxjs/operators'; // Import the 'tap' operator
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  movies: any[] = [];
+  movies: Movie[] = [];
 
   constructor(private apiService: ApiService) {}
-  movieSelected:any=''
+  movieSelected:Movie|undefined
+  editeMovie:Movie|undefined
   ngOnInit() {
-    this.apiService.getMovies().pipe(
-      tap(() => {
-        console.log('I am from parent'); // Parent's console log
-      })
-    ).subscribe((res) => {
+    this.apiService.getMovies().subscribe((res:Movie[]) => {
       this.movies = res;
     }, error => {
       console.log('Error:', error);
     });
   }
-  seletedMovie(data:any){
+  seletedMovie(data:Movie){
     this.movieSelected=data
+    this.editeMovie=undefined
      console.log('parent selected movie ',this.movieSelected)
+  }
+  editedMovie(data:Movie){
+    this.editeMovie=data
+    this.movieSelected=undefined
+  }
+  newdMovie(){
+    this.editeMovie={id:0,
+      title:'',
+      description:'',
+      avg_rating:0,
+      no_of_ratings:0};
+    this.movieSelected=undefined
   }
 }

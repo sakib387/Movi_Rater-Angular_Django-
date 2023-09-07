@@ -1,0 +1,21 @@
+.movie{
+ display: flex;
+ justify-content: space-between;
+ border: 1px solid #a7139d;
+ margin-right: 20px;
+ padding: 5px;
+ margin-top: 4;
+
+}
+.icon{
+    margin: 10px;
+    margin-top: 20px;
+}
+.edit{
+    margin: 5px;
+    color: green;
+}
+.delete{
+    margin: 5px;
+    color: rgb(128, 0, 11);
+}
