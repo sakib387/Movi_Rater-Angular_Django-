@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input ,Output,EventEmitter} from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ApiService } from 'src/app/api.service';
 @Component({
@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/api.service';
 export class MovieDetailsComponent {
   constructor(private apiserivce:ApiService){}
  @Input() movie:any;
+ @Output() updatedMovie=new EventEmitter()
  faStar=faStar
  rating:number=0;
  getrating(rate:number){
@@ -17,7 +18,12 @@ export class MovieDetailsComponent {
  }
  ratingmovie(data:number){
    this.apiserivce.rateMovies(data,this.movie.id).subscribe((res)=>{
-    console.log(res)
+    this.getdetails()
+   })
+ }
+ getdetails(){
+   this.apiserivce.getMovie(this.movie.id).subscribe((res)=>{
+     this.updatedMovie.emit(res)
    })
  }
 }
