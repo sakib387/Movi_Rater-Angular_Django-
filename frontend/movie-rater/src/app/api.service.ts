@@ -20,6 +20,10 @@ export class ApiService {
   getMovie(id:number){
     return this.http.get<Movie>(`${this.baseurl}${id}/`,{headers:this.headers})
   }
+  createMovie(title:string,description:string){
+    const body=JSON.stringify({title,description})
+    return this.http.post(`${this.baseurl}`,body,{headers:this.headers})
+  }
   rateMovies(rate:number,movieId:number){
     const body=JSON.stringify({stars:rate})
     return this.http.post(`${this.baseurl}${movieId}/rate_movie/`,body,{headers:this.headers})

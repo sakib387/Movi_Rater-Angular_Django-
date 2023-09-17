@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator,MinValueValidator
 # Create your models here.
 class Movie(models.Model):
     title=models.CharField(max_length=32)
-    descripiton=models.TextField(max_length=360)
+    description=models.TextField(max_length=360)
     def no_of_rating(self):
         rating=Rating.objects.filter(movie=self)
         return len(rating)
