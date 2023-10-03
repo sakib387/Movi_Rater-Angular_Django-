@@ -3,7 +3,7 @@
     
     <div>
         <app-movie-details *ngIf="movieSelected"  [movie]="movieSelected" (updatedMovie)="seletedMovie($event)"></app-movie-details>
-        <app-movie-form *ngIf="editeMovie"  [movie]="editeMovie"></app-movie-form>
+        <app-movie-form *ngIf="editeMovie"  [movie]="editeMovie" (updatedMovie)="updateMovie($event)" (createdMovie)="createdMovie($event)"></app-movie-form>
     </div>
    
 </div>

@@ -22,12 +22,12 @@ export class ApiService {
   }
   createMovie(title:string,description:string){
     const body=JSON.stringify({title,description})
-    return this.http.post(`${this.baseurl}`,body,{headers:this.headers})
+    return this.http.post<Movie>(`${this.baseurl}`,body,{headers:this.headers})
   }
 
   updateMovie(id:number,title:string,description:string){
     const body=JSON.stringify({title,description})
-    return this.http.put(`${this.baseurl}${id}/`,body,{headers:this.headers})
+    return this.http.put<Movie>(`${this.baseurl}${id}/`,body,{headers:this.headers})
   }
 deleteMovie(id:number){
  

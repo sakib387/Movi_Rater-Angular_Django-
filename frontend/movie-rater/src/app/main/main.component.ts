@@ -33,7 +33,7 @@ export class MainComponent {
   }
   deleteMovie(data:number){
     this.apiService.deleteMovie(data).subscribe((res)=>{
-      
+      this.movies=this.movies.filter(mov=>mov.id!=data)
     })
   }
   newdMovie(){
@@ -43,5 +43,16 @@ export class MainComponent {
       avg_rating:0,
       no_of_ratings:0};
     this.movieSelected=undefined
+  }
+  updateMovie(data:Movie){
+    const ind=this.movies.findIndex(mov=>mov.id==data.id)
+    if(ind){
+      this.movies[ind]=data
+    }
+    this.editeMovie=undefined
+  }
+  createdMovie(data:Movie){
+    this.movies.push(data)
+    this.editeMovie=undefined
   }
 }
