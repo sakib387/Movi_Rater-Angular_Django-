@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
 
 import { Route,RouterModule } from '@angular/router';
-
+import {ReactiveFormsModule} from '@angular/forms'
 const routes :Route[]=[
   {
     path:'auth',component:AuthComponent
@@ -16,6 +16,7 @@ const routes :Route[]=[
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports:[

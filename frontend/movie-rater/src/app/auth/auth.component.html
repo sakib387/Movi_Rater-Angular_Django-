@@ -1,1 +1,13 @@
-<p>auth works!</p>
+<form [formGroup]="authForm" style="margin-left: 32%;"(ngSubmit)="save()">
+    <label>Username</label>
+    <br>
+    <input type="text" formControlName="Username" style="width: 30%;height: 30px;">
+    <br>
+    <label>Password</label><br>
+    <input type="Password" formControlName="Password"style="width: 30%;height: 30px;">
+    <br>
+    <button type="submit"style="margin-top:20px;background-color:blue;margin-left:15%">
+       <span style="color: wheat;font-size: 15px;">Login</span> 
+    </button>
+    </form>
+    
