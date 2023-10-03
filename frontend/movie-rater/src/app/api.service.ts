@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import{HttpClient,HttpHeaders} from '@angular/common/http'
 import { Movie } from './models/Movie';
+interface Token{
+  token:string
+}
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   baseurl='http://127.0.0.1:8000/api/movie/'
+  rooturl='http://127.0.0.1:8000/'
   headers=new HttpHeaders({
     'content-Type':'application/json',
-    Authorization:'token d80e7b0a3c4e6fe0d51c21afa87bbb268abdf6d3'
+    //Authorization:'token d80e7b0a3c4e6fe0d51c21afa87bbb268abdf6d3'
   })
   constructor(
     private http:HttpClient
@@ -36,5 +40,10 @@ deleteMovie(id:number){
   rateMovies(rate:number,movieId:number){
     const body=JSON.stringify({stars:rate})
     return this.http.post(`${this.baseurl}${movieId}/rate_movie/`,body,{headers:this.headers})
+  }
+  login(authData:any){
+    const body=JSON.stringify(authData)
+    return this.http.post<Token>(`${this.rooturl}auth/`,body,{headers:this.headers})
+
   }
 }
