@@ -24,6 +24,15 @@ export class ApiService {
     const body=JSON.stringify({title,description})
     return this.http.post(`${this.baseurl}`,body,{headers:this.headers})
   }
+
+  updateMovie(id:number,title:string,description:string){
+    const body=JSON.stringify({title,description})
+    return this.http.put(`${this.baseurl}${id}/`,body,{headers:this.headers})
+  }
+deleteMovie(id:number){
+ 
+    return this.http.delete(`${this.baseurl}${id}/`,{headers:this.headers})
+  }
   rateMovies(rate:number,movieId:number){
     const body=JSON.stringify({stars:rate})
     return this.http.post(`${this.baseurl}${movieId}/rate_movie/`,body,{headers:this.headers})

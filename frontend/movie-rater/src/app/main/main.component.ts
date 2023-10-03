@@ -31,6 +31,11 @@ export class MainComponent {
     this.editeMovie=data
     this.movieSelected=undefined
   }
+  deleteMovie(data:number){
+    this.apiService.deleteMovie(data).subscribe((res)=>{
+      
+    })
+  }
   newdMovie(){
     this.editeMovie={id:0,
       title:'',

@@ -13,6 +13,7 @@ export class MovieListComponent {
 @Output() seletedMovie=new EventEmitter<any>()
 @Output() editedMovie=new EventEmitter<any>()
 @Output() newdMovie=new EventEmitter()
+@Output() deleteMovie=new EventEmitter()
 delete=faTrash
 edit=faEdit
 constructor(private apiService:ApiService){}
@@ -28,5 +29,8 @@ constructor(private apiService:ApiService){}
  }
  newMovie(){
   this.newdMovie.emit()
+ }
+ deleteMovies(id:number){
+   this.deleteMovie.emit(id);
  }
 }

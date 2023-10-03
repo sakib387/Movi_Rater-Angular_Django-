@@ -10,8 +10,10 @@ import { ApiService } from 'src/app/api.service';
 export class MovieFormComponent {
   constructor(private apiservice:ApiService){}
   movieForm:any;
+  id!:number;
   @Input() set movie(val:Movie){
-    console.log(val)
+    this.id=val.id
+    console.log(this.id)
        this.movieForm=new FormGroup({
     title:new FormControl(val.title),
     description:new FormControl(val.description)
@@ -19,9 +21,17 @@ export class MovieFormComponent {
   }
 
   save(){
-   // console.log(this.movieForm.value)
-   this.apiservice.createMovie(this.movieForm.value.title,this.movieForm.value.description).subscribe((res)=>{
+    if(this.id){
+      this.apiservice.updateMovie(this.id,this.movieForm.value.title,this.movieForm.value.description).subscribe((res)=>{
   
-   })
+      })
+
+    }
+    else{
+      this.apiservice.createMovie(this.movieForm.value.title,this.movieForm.value.description).subscribe((res)=>{
+  
+      })
+    }
+    
   }
 }

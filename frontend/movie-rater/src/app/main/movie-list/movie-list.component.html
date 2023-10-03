@@ -4,7 +4,7 @@
     <h3 (click)="movieclicked(movie)">{{movie.title}}</h3>
     <div class="icon">
         <fa-icon [icon]="edit"  class="edit" (click)="editMovie(movie)"></fa-icon> 
-        <fa-icon [icon]="delete" class="delete"></fa-icon> 
+        <fa-icon [icon]="delete" class="delete" (click)="deleteMovies(movie.id)"></fa-icon> 
     </div>
     </div>
     <button style="margin-top: 10px;background-color: rgb(0, 191, 255);" (click)="newMovie()">Add Movie</button>
