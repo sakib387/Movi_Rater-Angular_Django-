@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../api.service';
-import { tap } from 'rxjs/operators'; // Import the 'tap' operator
 import { Movie } from '../models/Movie';
-import { EMPTY } from 'rxjs';
+import{CookieService}from 'ngx-cookie-service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -12,15 +12,24 @@ import { EMPTY } from 'rxjs';
 export class MainComponent {
   movies: Movie[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService,
+    private cookieService:CookieService,
+    private route:Router
+    ) {}
   movieSelected:Movie|undefined
   editeMovie:Movie|undefined
   ngOnInit() {
-    this.apiService.getMovies().subscribe((res:Movie[]) => {
-      this.movies = res;
-    }, error => {
-      console.log('Error:', error);
-    });
+    const token=this.cookieService.get('mr-token')
+    if(!token){
+     this.route.navigate(['/auth'])
+    }
+    else{
+      this.apiService.getMovies().subscribe((res:Movie[]) => {
+        this.movies = res;
+      }, error => {
+        console.log('Error:', error);
+      });
+    }
   }
   seletedMovie(data:Movie){
     this.movieSelected=data
