@@ -7,7 +7,13 @@
     <input type="Password" formControlName="password"style="width: 30%;height: 30px;">
     <br>
     <button type="submit"style="margin-top:20px;background-color:blue;margin-left:15%">
-       <span style="color: wheat;font-size: 15px;">Login</span> 
+       <span *ngIf="!register" style="color: wheat;font-size: 15px;">Login</span> 
+       <span *ngIf="register" style="color: wheat;font-size: 15px;">register</span> 
     </button>
     </form>
+    <div style="color: rgb(0, 255, 13);margin-left: 40%;margin-top: 2%;">
+
+       <a *ngIf="register" (click)="register=false">Alrady have an account</a>
+       <a *ngIf="!register" (click)="register=true">Don't have an account</a>
+    </div>
     

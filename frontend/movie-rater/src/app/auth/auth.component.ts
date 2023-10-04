@@ -13,6 +13,7 @@ interface Token{
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit{
+  register:boolean=false;
   constructor(private apiservice:ApiService,
     private cookieService:CookieService,
     private route:Router
@@ -28,9 +29,16 @@ ngOnInit(): void {
     }
 }
 save(){
-  this.apiservice.login(this.authForm.value).subscribe((res:Token)=>{
-   this.cookieService.set('mr-token',res.token)
-   this.route.navigate(['/movies'])
-  })
+  if(this.register==false){
+    this.apiservice.login(this.authForm.value).subscribe((res:Token)=>{
+      this.cookieService.set('mr-token',res.token)
+      this.route.navigate(['/movies'])
+     })
+  }
+  else{
+   this.apiservice.register(this.authForm.value).subscribe((res)=>{
+    this.register=false;
+   })
+  }
 }
 }

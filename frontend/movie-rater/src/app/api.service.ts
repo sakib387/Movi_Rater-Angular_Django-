@@ -48,6 +48,11 @@ deleteMovie(id:number){
     return this.http.post<Token>(`${this.rooturl}auth/`,body,{headers:this.headers})
 
   }
+  register(authData:any){
+    const body=JSON.stringify(authData)
+    return this.http.post<Token>(`${this.rooturl}api/user/`,body,{headers:this.headers})
+
+  }
   getHeaders(){
     const token=this.cookieService.get('mr-token')
     return new HttpHeaders({
