@@ -64,4 +64,8 @@ export class MainComponent {
     this.movies.push(data)
     this.editeMovie=undefined
   }
+  logOut(){
+    this.cookieService.delete('mr-token')
+    this.route.navigate(['/auth'])
+  }
 }
